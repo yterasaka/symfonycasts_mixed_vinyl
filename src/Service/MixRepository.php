@@ -18,6 +18,8 @@ class MixRepository
 
     public function findAll(): array
     {
+        dd($this->githubContentClient);
+        
         return $this->cache->get('mixes_data', function(CacheItemInterface $cacheItem) {
             $cacheItem->expiresAfter($this->isDebug ? 5 : 60);
             $response = $this->githubContentClient->request('GET', '/SymfonyCasts/vinyl-mixes/main/mixes.json');
